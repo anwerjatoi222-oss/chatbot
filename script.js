@@ -1,392 +1,338 @@
-/* University FAQ Chatbot - script.js
-   - Loads FAQs from faqs.json
-   - Keyword-overlap matching with threshold and fallback suggestions
-   - SpeechRecognition voice input with Listening pulse animation
-   - speechSynthesis voice output with mute toggle
-   - localStorage chat history with Clear Chat
-   - Dark/light mode toggle
-   - Error handling: no speech support, mic permission denied, empty input
-*/
+/* ==================== SIMPLE CHATBOT LOGIC ==================== */
 
-(function () {
-  // ---------- Configuration ----------
-  const MATCH_THRESHOLD = 0.2;   // minimum score to accept a match
-  const FALLBACK_SUGGESTIONS = 3; // how many related questions to suggest
-  const FAQ_FILE = "faqs.json";
-  const STORAGE_KEY = "university_faq_chat_history";
+// ---------- CONFIG ----------
+const FAQ_FILE = "faqs.json";
+const MATCH_THRESHOLD = 0.2;      // minimum score to show an answer
+const SUGGESTION_COUNT = 3;       // how many fallback suggestions to show
+const STORAGE_KEY = "chat_history";
 
-  // ---------- Elements ----------
-  const messagesEl = document.getElementById("messages");
-  const emptyStateEl = document.getElementById("empty-state");
-  const chipsEl = document.getElementById("chips");
-  const userInputEl = document.getElementById("user-input");
-  const sendBtn = document.getElementById("send-btn");
-  const micBtn = document.getElementById("mic-btn");
-  const micStatusEl = document.getElementById("mic-status");
-  const clearBtn = document.getElementById("clear-btn");
-  const themeBtn = document.getElementById("theme-toggle");
-  const voiceBtn = document.getElementById("voice-toggle");
-  const welcomeMsg = document.getElementById("welcome-message");
+// ---------- DOM ELEMENTS ----------
+const chatArea = document.getElementById("chatArea");
+const chipsContainer = document.getElementById("chips");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+const micBtn = document.getElementById("micBtn");
+const clearBtn = document.getElementById("clearBtn");
+const themeBtn = document.getElementById("themeBtn");
+const voiceBtn = document.getElementById("voiceBtn");
+const welcomeMsg = document.getElementById("welcomeMsg");
 
-  // ---------- State ----------
-  let faqs = [];
-  let isVoiceMuted = false;
-  let recognition = null;
-  let synth = window.speechSynthesis;
-  let currentUtterance = null;
+// ---------- STATE ----------
+let faqs = [];                    // FAQ data loaded from JSON
+let isVoiceMuted = false;         // voice output on/off
+let recognition = null;           // speech recognition object
+let synth = window.speechSynthesis; // speech synthesis
 
-  // ---------- Init ----------
-  async function init() {
-    loadTheme();
-    renderChips();
-    loadHistory();
+// ---------- INIT ----------
+async function init() {
+  loadTheme();           // load saved theme preference
+  renderChips();         // show quick question buttons
+  loadHistory();         // restore chat from localStorage
+  await loadFAQs();      // fetch FAQ data from faqs.json
+  setupSpeech();         // prepare voice recognition
+  bindEvents();          // attach click/listeners
+}
 
-    userInputEl.addEventListener("input", () => {
-      sendBtn.disabled = userInputEl.value.trim() === "";
-    });
+// ---------- THEME ----------
+function loadTheme() {
+  const saved = localStorage.getItem("theme");
+  const isDark = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+  themeBtn.textContent = isDark ? "☀️" : "🌙";
+}
 
-    sendBtn.addEventListener("click", handleSend);
-    userInputEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") handleSend();
-    });
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", isDark ? "light" : "dark");
+  localStorage.setItem("theme", isDark ? "light" : "dark");
+  themeBtn.textContent = isDark ? "🌙" : "☀️";
+}
 
-    micBtn.addEventListener("click", toggleMic);
-    clearBtn.addEventListener("click", clearHistory);
-    themeBtn.addEventListener("click", toggleTheme);
-    voiceBtn.addEventListener("click", toggleVoice);
+// ---------- VOICE OUTPUT (Text-to-Speech) ----------
+function toggleVoice() {
+  isVoiceMuted = !isVoiceMuted;
+  voiceBtn.textContent = isVoiceMuted ? "🔇" : "🔊";
+  if (isVoiceMuted) synth.cancel(); // stop speaking if muted
+}
 
-    try {
-      const res = await fetch(FAQ_FILE);
-      if (!res.ok) throw new Error("Failed to load FAQ data");
-      const data = await res.json();
-      faqs = Array.isArray(data.faqs) ? data.faqs : [];
-    } catch (err) {
-      console.error(err);
-      addBotMessage("Sorry, I couldn't load the FAQ data. Please make sure you're viewing this page through a local server (e.g. open index.html via a server, not as a raw file).");
-    }
+function speak(text) {
+  if (isVoiceMuted) return;
+  synth.cancel(); // stop any current speech
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  synth.speak(utterance);
+}
 
-    setupSpeech();
+// ---------- VOICE INPUT (Speech Recognition) ----------
+function setupSpeech() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    micBtn.disabled = true;
+    micBtn.title = "Voice not supported in this browser";
+    return;
   }
 
-  // ---------- Theming ----------
-  function loadTheme() {
-    const saved = localStorage.getItem("ufaq_theme");
-    const dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
-    updateThemeIcon(dark);
-  }
+  recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+  recognition.continuous = false;
+  recognition.interimResults = false;
 
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute("data-theme") === "dark";
-    const next = isDark ? "light" : "dark";
-    html.setAttribute("data-theme", next);
-    localStorage.setItem("ufaq_theme", next);
-    updateThemeIcon(next === "dark");
-  }
-
-  function updateThemeIcon(isDark) {
-    themeBtn.querySelector(".icon").textContent = isDark ? "☀️" : "🌙";
-    themeBtn.title = isDark ? "Switch to light mode" : "Switch to dark mode";
-  }
-
-  // ---------- Voice output ----------
-  function toggleVoice() {
-    isVoiceMuted = !isVoiceMuted;
-    const icon = voiceBtn.querySelector(".icon");
-    icon.textContent = isVoiceMuted ? "🔇" : "🔊";
-    voiceBtn.title = isVoiceMuted ? "Unmute voice" : "Mute voice";
-    if (isVoiceMuted && currentUtterance) {
-      try { synth.cancel(); } catch (e) {}
-      currentUtterance = null;
-    }
-  }
-
-  function speak(text) {
-    if (isVoiceMuted) return;
-    try {
-      synth.cancel();
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      currentUtterance.lang = "en-US";
-      currentUtterance.rate = 1;
-      currentUtterance.onend = () => { currentUtterance = null; };
-      synth.speak(currentUtterance);
-    } catch (e) {
-      // Speech synthesis not available or blocked — silent fail
-    }
-  }
-
-  // ---------- Speech recognition ----------
-  function setupSpeech() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      micBtn.disabled = true;
-      micBtn.title = "Voice input not supported in this browser";
-      micStatusEl.textContent = "Voice not supported";
-      return;
-    }
-
-    recognition = new SpeechRecognition();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = "en-US";
-
-    recognition.onstart = () => {
-      micBtn.classList.add("listening");
-      micStatusEl.textContent = "Listening…";
-      userInputEl.disabled = true;
-      sendBtn.disabled = true;
-    };
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript.trim();
-      if (transcript) {
-        userInputEl.value = transcript;
-        sendBtn.disabled = false;
-        handleUserMessage(transcript);
-      }
-    };
-
-    recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
-      if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-        micStatusEl.textContent = "Microphone permission denied";
-      } else if (event.error === "no-speech") {
-        micStatusEl.textContent = "No speech detected";
-      } else {
-        micStatusEl.textContent = "Voice error: " + event.error;
-      }
-      endListening();
-    };
-
-    recognition.onend = endListening;
-  }
-
-  function endListening() {
-    micBtn.classList.remove("listening");
-    micStatusEl.textContent = "Click to speak";
-    userInputEl.disabled = false;
-    if (userInputEl.value.trim()) sendBtn.disabled = false;
-  }
-
-  function toggleMic() {
-    if (!recognition) {
-      addBotMessage("Sorry, voice input isn't supported in this browser. Please type your question instead.");
-      return;
-    }
-    if (micBtn.classList.contains("listening")) {
-      recognition.stop();
-      return;
-    }
-    try {
-      recognition.start();
-    } catch (e) {
-      micStatusEl.textContent = "Could not start microphone";
-      endListening();
-    }
-  }
-
-  // ---------- Chat handling ----------
-  function handleSend() {
-    const text = userInputEl.value.trim();
-    if (!text) return;
-    userInputEl.value = "";
+  // When recognition starts
+  recognition.onstart = () => {
+    micBtn.classList.add("listening");
+    micBtn.title = "Listening... click to stop";
+    userInput.disabled = true;
     sendBtn.disabled = true;
-    handleUserMessage(text);
+  };
+
+  // When speech is recognized
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript.trim();
+    if (text) {
+      userInput.value = text;
+      handleSend(); // process the recognized text
+    }
+  };
+
+  // On error
+  recognition.onerror = (e) => {
+    if (e.error === "not-allowed") alert("Microphone permission denied");
+    else if (e.error === "no-speech") alert("No speech detected");
+    else console.error("Speech error:", e.error);
+    stopListening();
+  };
+
+  // When recognition ends (for any reason)
+  recognition.onend = stopListening;
+}
+
+function stopListening() {
+  micBtn.classList.remove("listening");
+  micBtn.title = "Click to speak";
+  userInput.disabled = false;
+}
+
+function toggleMic() {
+  if (!recognition) {
+    alert("Voice input not supported in this browser. Use Chrome/Edge and serve via HTTP.");
+    return;
   }
+  if (micBtn.classList.contains("listening")) {
+    recognition.stop();
+  } else {
+    try { recognition.start(); } catch (e) { alert("Could not start microphone"); }
+  }
+}
 
-  function handleUserMessage(text) {
-    addUserMessage(text);
-    scrollToBottom();
+// ---------- LOAD FAQs ----------
+async function loadFAQs() {
+  try {
+    const response = await fetch(FAQ_FILE);
+    const data = await response.json();
+    faqs = data.faqs || [];
+  } catch (e) {
+    console.error("Failed to load FAQs:", e);
+    addBotMessage("Could not load FAQ data. Make sure you're running via a local server (not file://).");
+  }
+}
 
+// ---------- EVENT BINDINGS ----------
+function bindEvents() {
+  // Send button
+  sendBtn.onclick = handleSend;
+  userInput.onkeydown = (e) => { if (e.key === "Enter") handleSend(); };
+
+  // Mic button
+  micBtn.onclick = toggleMic;
+
+  // Clear chat
+  clearBtn.onclick = () => {
+    if (confirm("Clear all chat history?")) {
+      chatArea.innerHTML = "";
+      chatArea.appendChild(welcomeMsg);
+      welcomeMsg.style.display = "block";
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  };
+
+  // Theme toggle
+  themeBtn.onclick = toggleTheme;
+
+  // Voice toggle
+  voiceBtn.onclick = toggleVoice;
+
+  // Enable/disable send button based on input
+  userInput.oninput = () => { sendBtn.disabled = !userInput.value.trim(); };
+}
+
+// ---------- CHAT FUNCTIONS ----------
+function handleSend() {
+  const text = userInput.value.trim();
+  if (!text) return;
+  userInput.value = "";
+  sendBtn.disabled = true;
+
+  addUserMessage(text);
+  scrollToBottom();
+
+  // Small delay before bot replies (feels more natural)
+  setTimeout(() => {
     const match = findBestMatch(text);
-    setTimeout(() => {
-      if (match && match.score >= MATCH_THRESHOLD) {
-        addBotMessage(match.item.answer);
-        speak(match.item.answer);
-      } else {
-        const suggestions = getRelatedSuggestions(text, match ? match.item : null);
-        addBotMessage(buildFallbackMessage(suggestions));
-        speak(buildFallbackMessage(suggestions, true));
-      }
-    }, 400);
+    if (match && match.score >= MATCH_THRESHOLD) {
+      addBotMessage(match.faq.answer);
+      speak(match.faq.answer);
+    } else {
+      const suggestions = getSuggestions(text, match?.faq);
+      const msg = buildFallbackMessage(suggestions);
+      addBotMessage(msg);
+      speak(msg.replace(/•/g, "").replace(/\n/g, " ")); // speak without bullets
+    }
+  }, 400);
+}
+
+function addUserMessage(text) {
+  const div = document.createElement("div");
+  div.className = "message user";
+  div.innerHTML = `<div class="bubble">${escape(text)}</div>`;
+  chatArea.appendChild(div);
+  welcomeMsg.style.display = "none";
+  saveHistory();
+}
+
+function addBotMessage(text) {
+  const div = document.createElement("div");
+  div.className = "message bot";
+  div.innerHTML = `<div class="bubble">${escape(text).replace(/\n/g, "<br>")}</div>`;
+  chatArea.appendChild(div);
+  welcomeMsg.style.display = "none";
+  saveHistory();
+}
+
+function scrollToBottom() {
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+// Escape HTML to prevent XSS
+function escape(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ---------- MATCHING LOGIC ----------
+// Clean text: lowercase, remove punctuation, split into words
+function getWords(text) {
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(w => w);
+}
+
+// Find best matching FAQ using word overlap (Jaccard similarity)
+function findBestMatch(input) {
+  const inputWords = new Set(getWords(input));
+  if (inputWords.size === 0) return null;
+
+  let best = null;
+  let bestScore = 0;
+
+  for (const faq of faqs) {
+    // Combine question + keywords for matching
+    const faqText = faq.question + " " + faq.keywords.join(" ");
+    const faqWords = new Set(getWords(faqText));
+
+    // Count overlapping words
+    let overlap = 0;
+    for (const w of inputWords) if (faqWords.has(w)) overlap++;
+
+    // Jaccard score = overlap / (total unique words)
+    const totalUnique = new Set([...inputWords, ...faqWords]).size;
+    const score = overlap / totalUnique;
+
+    if (score > bestScore) {
+      bestScore = score;
+      best = faq;
+    }
   }
 
-  function addUserMessage(text) {
-    const msg = document.createElement("div");
-    msg.className = "message user";
-    msg.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>
-                     <div class="meta">You</div>`;
-    messagesEl.appendChild(msg);
-    emptyStateEl.classList.add("hidden");
-    welcomeMsg.classList.add("hidden");
-    saveHistory();
-  }
+  return best ? { faq: best, score: bestScore } : null;
+}
 
-  function addBotMessage(text) {
-    const msg = document.createElement("div");
-    msg.className = "message bot";
-    msg.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>
-                     <div class="meta">Assistant</div>`;
-    messagesEl.appendChild(msg);
-    emptyStateEl.classList.add("hidden");
-    saveHistory();
-  }
-
-  function scrollToBottom() {
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-
-  // ---------- Matching logic ----------
-  function cleanText(text) {
-    return text
-      .toLowerCase()
-      .replace(/[^a-z0-9\s]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function tokenize(text) {
-    return cleanText(text).split(/\s+/).filter(Boolean);
-  }
-
-  function findBestMatch(input) {
-    const inputTokens = new Set(tokenize(input));
-    if (inputTokens.size === 0) return null;
-
-    let best = null;
-    let bestScore = 0;
-
-    for (const faq of faqs) {
-      const faqTokens = new Set(tokenize(faq.question + " " + faq.keywords.join(" ")));
-      if (faqTokens.size === 0) continue;
-
+// Get fallback suggestions (related questions)
+function getSuggestions(input, excludeFaq) {
+  const inputWords = new Set(getWords(input));
+  return faqs
+    .filter(f => f !== excludeFaq)
+    .map(f => {
+      const faqWords = new Set(getWords(f.question + " " + f.keywords.join(" ")));
       let overlap = 0;
-      for (const t of inputTokens) {
-        if (faqTokens.has(t)) overlap++;
-      }
+      for (const w of inputWords) if (faqWords.has(w)) overlap++;
+      const totalUnique = new Set([...inputWords, ...faqWords]).size;
+      return { faq: f, score: overlap / totalUnique };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, SUGGESTION_COUNT)
+    .map(x => x.faq);
+}
 
-      // Jaccard-like score: overlap / union size
-      const union = new Set([...inputTokens, ...faqTokens]);
-      const score = overlap / union.size;
-
-      if (score > bestScore) {
-        bestScore = score;
-        best = faq;
-      }
-    }
-
-    return { item: best, score: bestScore };
+function buildFallbackMessage(suggestions) {
+  let msg = "I'm not sure I understand. Could you rephrase? Here are some related topics:";
+  if (suggestions.length > 0) {
+    msg += "\n\n" + suggestions.map(s => "• " + s.question).join("\n");
   }
+  return msg;
+}
 
-  function getRelatedSuggestions(input, excludeItem) {
-    const inputTokens = new Set(tokenize(input));
-    const scored = faqs
-      .filter((f) => f !== excludeItem)
-      .map((f) => {
-        const faqTokens = new Set(tokenize(f.question + " " + f.keywords.join(" ")));
-        let overlap = 0;
-        for (const t of inputTokens) if (faqTokens.has(t)) overlap++;
-        const union = new Set([...inputTokens, ...faqTokens]);
-        return { item: f, score: overlap / union.size };
-      })
-      .sort((a, b) => b.score - a.score)
-      .slice(0, FALLBACK_SUGGESTIONS);
+// ---------- QUICK QUESTION CHIPS ----------
+function renderChips() {
+  // Show first 6 FAQ questions as clickable chips
+  const questions = faqs.slice(0, 6).map(f => f.question);
+  chipsContainer.innerHTML = questions.map(q => `<button class="chip">${escape(q)}</button>`).join("");
 
-    return scored.map((s) => s.item);
-  }
+  // Click handler for each chip
+  chipsContainer.querySelectorAll(".chip").forEach(btn => {
+    btn.onclick = () => {
+      userInput.value = btn.textContent;
+      sendBtn.disabled = false;
+      userInput.focus();
+    };
+  });
+}
 
-  function buildFallbackMessage(suggestions, forSpeech = false) {
-    const base = "I'm not sure I understand. Could you rephrase your question? Here are some related topics you might ask about:";
-    if (!suggestions || suggestions.length === 0) {
-      return forSpeech ? base : base;
-    }
-    const list = suggestions.map((s) => "• " + s.question).join("\n");
-    return base + "\n\n" + list;
-  }
+// ---------- LOCALSTORAGE HISTORY ----------
+function saveHistory() {
+  const messages = [];
+  chatArea.querySelectorAll(".message").forEach(el => {
+    const isUser = el.classList.contains("user");
+    const text = el.querySelector(".bubble").textContent;
+    messages.push({ text, type: isUser ? "user" : "bot" });
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+}
 
-  // ---------- Suggested chips ----------
-  function renderChips() {
-    const starters = faqs.slice(0, 6).map((f) => f.question);
-    chipsEl.innerHTML = starters
-      .map((q) => `<button class="chip" type="button">${escapeHtml(q)}</button>`)
-      .join("");
-    chipsEl.querySelectorAll(".chip").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        userInputEl.value = btn.textContent;
-        sendBtn.disabled = false;
-        userInputEl.focus();
-      });
+function loadHistory() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    if (!data.length) return;
+    welcomeMsg.style.display = "none";
+    data.forEach(m => {
+      if (m.type === "user") addUserMessageRaw(m.text);
+      else addBotMessageRaw(m.text);
     });
-  }
+  } catch (e) { /* ignore corrupt data */ }
+}
 
-  // ---------- localStorage history ----------
-  function saveHistory() {
-    const bubbles = Array.from(messagesEl.querySelectorAll(".bubble")).map((b) => b.textContent);
-    const types = Array.from(messagesEl.querySelectorAll(".message")).map((m) =>
-      m.classList.contains("user") ? "user" : "bot"
-    );
-    const history = bubbles.map((text, i) => ({ text, type: types[i] }));
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
-    } catch (e) {
-      // localStorage unavailable — silently ignore
-    }
-  }
+// Raw adders for history restore (no double-save)
+function addUserMessageRaw(text) {
+  const div = document.createElement("div");
+  div.className = "message user";
+  div.innerHTML = `<div class="bubble">${escape(text)}</div>`;
+  chatArea.appendChild(div);
+}
+function addBotMessageRaw(text) {
+  const div = document.createElement("div");
+  div.className = "message bot";
+  div.innerHTML = `<div class="bubble">${escape(text).replace(/\n/g, "<br>")}</div>`;
+  chatArea.appendChild(div);
+}
 
-  function loadHistory() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const history = JSON.parse(raw);
-      if (!Array.isArray(history)) return;
-      welcomeMsg.classList.add("hidden");
-      history.forEach((entry) => {
-        if (entry.type === "user") addUserMessageRaw(entry.text);
-        else addBotMessageRaw(entry.text);
-      });
-    } catch (e) {
-      // ignore malformed history
-    }
-  }
-
-  // Raw appenders used when restoring history (no duplicate save/speak)
-  function addUserMessageRaw(text) {
-    const msg = document.createElement("div");
-    msg.className = "message user";
-    msg.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>
-                     <div class="meta">You</div>`;
-    messagesEl.appendChild(msg);
-    emptyStateEl.classList.add("hidden");
-    welcomeMsg.classList.add("hidden");
-  }
-
-  function addBotMessageRaw(text) {
-    const msg = document.createElement("div");
-    msg.className = "message bot";
-    msg.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>
-                     <div class="meta">Assistant</div>`;
-    messagesEl.appendChild(msg);
-    emptyStateEl.classList.add("hidden");
-    welcomeMsg.classList.add("hidden");
-  }
-
-  function clearHistory() {
-    if (!confirm("Clear all chat history?")) return;
-    messagesEl.innerHTML = "";
-    messagesEl.appendChild(welcomeMsg);
-    welcomeMsg.classList.remove("hidden");
-    emptyStateEl.classList.remove("hidden");
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-  }
-
-  // ---------- Helpers ----------
-  function escapeHtml(text) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  // Start
-  init();
-})();
+// ---------- START ----------
+init();

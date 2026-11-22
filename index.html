@@ -8,49 +8,36 @@
 </head>
 <body>
   <div class="chat-container">
+    <!-- Header -->
     <header class="chat-header">
-      <div class="header-left">
+      <div>
         <h1>University FAQ Assistant</h1>
-        <p class="header-subtitle">Admissions &bull; Fees &bull; Timetable &bull; Exams &bull; Library &bull; Societies &bull; Contact</p>
+        <p class="subtitle">Admissions • Fees • Timetable • Exams • Library • Societies • Contact</p>
       </div>
-      <div class="header-controls">
-        <button id="theme-toggle" class="icon-button" title="Toggle dark/light mode" aria-label="Toggle dark mode">
-          <span class="icon">🌙</span>
-        </button>
-        <button id="voice-toggle" class="icon-button" title="Mute/unmute voice output" aria-label="Mute voice">
-          <span class="icon">🔊</span>
-        </button>
+      <div class="header-buttons">
+        <button id="themeBtn" title="Toggle dark/light mode">🌙</button>
+        <button id="voiceBtn" title="Mute/unmute voice">🔊</button>
       </div>
     </header>
 
-    <div id="messages" class="messages" role="log" aria-label="Conversation">
-      <div class="message bot" id="welcome-message">
-        <div class="bubble">
-          Hello! I'm your university FAQ assistant. Ask me about admissions, fees, timetables, exams, the library, societies, or contact information. You can type your question or click the mic to speak.
-        </div>
+    <!-- Chat Messages Area -->
+    <div id="chatArea" class="chat-area">
+      <div class="message bot" id="welcomeMsg">
+        <div class="bubble">Hello! I'm your university FAQ assistant. Ask me about admissions, fees, timetables, exams, the library, societies, or contact info. Type or click the mic to speak.</div>
       </div>
     </div>
 
-    <div id="empty-state" class="empty-state hidden">
-      <p>No messages yet. Start by asking a question!</p>
-    </div>
+    <!-- Quick Question Buttons -->
+    <div id="chips" class="chips"></div>
 
-    <div id="chips" class="chips">
-      <!-- Suggested question chips injected by script.js -->
-    </div>
-
+    <!-- Input Area -->
     <div class="input-area">
-      <div class="input-wrapper">
-        <input type="text" id="user-input" class="text-input" placeholder="Type your question..." autocomplete="off" />
-        <button id="send-btn" class="send-button" title="Send">
-          <span class="icon">➤</span>
-        </button>
-        <button id="mic-btn" class="mic-button" title="Start voice input" aria-label="Start voice input">
-          <span class="icon">🎤</span>
-          <span class="mic-status" id="mic-status">Click to speak</span>
-        </button>
+      <div class="input-row">
+        <input type="text" id="userInput" placeholder="Type your question..." />
+        <button id="sendBtn" title="Send">➤</button>
+        <button id="micBtn" title="Voice input">🎤</button>
       </div>
-      <button id="clear-btn" class="clear-button" title="Clear chat history">Clear Chat</button>
+      <button id="clearBtn" class="clear-btn">Clear Chat</button>
     </div>
   </div>
 
