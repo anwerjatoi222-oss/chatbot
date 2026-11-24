@@ -2,9 +2,10 @@
 
 // ---------- CONFIG ----------
 const FAQ_FILE = "faqs.json";
-const MATCH_THRESHOLD = 0.2;      // minimum score to show an answer
+const MATCH_THRESHOLD = 0.5;      // minimum score to show an answer (0 to 1)
 const SUGGESTION_COUNT = 3;       // how many fallback suggestions to show
 const STORAGE_KEY = "chat_history";
+const CHIP_IDS = [1, 6, 12, 20, 27, 33]; // FAQ ids shown as quick question chips
 
 // ---------- DOM ELEMENTS ----------
 const chatArea = document.getElementById("chatArea");
@@ -26,9 +27,9 @@ let synth = window.speechSynthesis; // speech synthesis
 // ---------- INIT ----------
 async function init() {
   loadTheme();           // load saved theme preference
-  renderChips();         // show quick question buttons
   loadHistory();         // restore chat from localStorage
   await loadFAQs();      // fetch FAQ data from faqs.json
+  renderChips();         // show quick question buttons (after FAQs are loaded)
   setupSpeech();         // prepare voice recognition
   bindEvents();          // attach click/listeners
 }
@@ -128,7 +129,7 @@ function toggleMic() {
 // ---------- LOAD FAQs ----------
 async function loadFAQs() {
   try {
-    const response = await fetch(FAQ_FILE);
+    const response = await fetch(FAQ_FILE, { cache: "no-store" });
     const data = await response.json();
     faqs = data.faqs || [];
   } catch (e) {
@@ -183,11 +184,12 @@ function handleSend() {
       addBotMessage(match.faq.answer);
       speak(match.faq.answer);
     } else {
-      const suggestions = getSuggestions(text, match?.faq);
+      const suggestions = getSuggestions(text, match ? match.faq : null);
       const msg = buildFallbackMessage(suggestions);
       addBotMessage(msg);
       speak(msg.replace(/•/g, "").replace(/\n/g, " ")); // speak without bullets
     }
+    scrollToBottom();
   }, 400);
 }
 
@@ -221,53 +223,68 @@ function escape(text) {
 }
 
 // ---------- MATCHING LOGIC ----------
+// Common words that do not help in matching
+const STOP_WORDS = new Set((
+  "a an the is are am was do does did can i my me we you your of to in on at for and or " +
+  "how what which will be it this that with from about please tell give there any have has get"
+).split(" "));
+
 // Clean text: lowercase, remove punctuation, split into words
 function getWords(text) {
   return text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(w => w);
 }
 
-// Find best matching FAQ using word overlap (Jaccard similarity)
+// Very simple plural handling: "scholarships" -> "scholarship"
+function stem(w) {
+  return (w.length > 3 && w.endsWith("s") && !w.endsWith("ss")) ? w.slice(0, -1) : w;
+}
+
+// Meaningful words only (no stop words, plurals normalised)
+function getKeyWords(text) {
+  return getWords(text).filter(w => !STOP_WORDS.has(w)).map(stem);
+}
+
+// Score one FAQ against the user's words.
+// Words found in the FAQ question count 1.0, words found in keywords count 0.8.
+// Score = matched / number of user words, so short questions like "library fine" work.
+function scoreFaq(inputWords, faq) {
+  if (inputWords.size === 0) return 0;
+  const questionWords = new Set(getKeyWords(faq.question));
+  const keywordWords = new Set(faq.keywords.flatMap(k => getKeyWords(k)));
+
+  let points = 0;
+  for (const w of inputWords) {
+    if (questionWords.has(w)) points += 1;
+    else if (keywordWords.has(w)) points += 0.8;
+  }
+  // tiny penalty for very long questions so the more specific FAQ wins ties
+  return points / inputWords.size - questionWords.size * 0.001;
+}
+
+// Find the best matching FAQ
 function findBestMatch(input) {
-  const inputWords = new Set(getWords(input));
+  const inputWords = new Set(getKeyWords(input));
   if (inputWords.size === 0) return null;
 
   let best = null;
   let bestScore = 0;
-
   for (const faq of faqs) {
-    // Combine question + keywords for matching
-    const faqText = faq.question + " " + faq.keywords.join(" ");
-    const faqWords = new Set(getWords(faqText));
-
-    // Count overlapping words
-    let overlap = 0;
-    for (const w of inputWords) if (faqWords.has(w)) overlap++;
-
-    // Jaccard score = overlap / (total unique words)
-    const totalUnique = new Set([...inputWords, ...faqWords]).size;
-    const score = overlap / totalUnique;
-
+    const score = scoreFaq(inputWords, faq);
     if (score > bestScore) {
       bestScore = score;
       best = faq;
     }
   }
-
   return best ? { faq: best, score: bestScore } : null;
 }
 
 // Get fallback suggestions (related questions)
 function getSuggestions(input, excludeFaq) {
-  const inputWords = new Set(getWords(input));
+  const inputWords = new Set(getKeyWords(input));
   return faqs
     .filter(f => f !== excludeFaq)
-    .map(f => {
-      const faqWords = new Set(getWords(f.question + " " + f.keywords.join(" ")));
-      let overlap = 0;
-      for (const w of inputWords) if (faqWords.has(w)) overlap++;
-      const totalUnique = new Set([...inputWords, ...faqWords]).size;
-      return { faq: f, score: overlap / totalUnique };
-    })
+    .map(f => ({ faq: f, score: scoreFaq(inputWords, f) }))
+    .filter(x => x.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, SUGGESTION_COUNT)
     .map(x => x.faq);
@@ -283,9 +300,10 @@ function buildFallbackMessage(suggestions) {
 
 // ---------- QUICK QUESTION CHIPS ----------
 function renderChips() {
-  // Show first 6 FAQ questions as clickable chips
-  const questions = faqs.slice(0, 6).map(f => f.question);
-  chipsContainer.innerHTML = questions.map(q => `<button class="chip">${escape(q)}</button>`).join("");
+  // Show selected FAQ questions as clickable chips (falls back to first 6)
+  let chipFaqs = CHIP_IDS.map(id => faqs.find(f => f.id === id)).filter(Boolean);
+  if (chipFaqs.length === 0) chipFaqs = faqs.slice(0, 6);
+  chipsContainer.innerHTML = chipFaqs.map(f => `<button class="chip">${escape(f.question)}</button>`).join("");
 
   // Click handler for each chip
   chipsContainer.querySelectorAll(".chip").forEach(btn => {
@@ -301,8 +319,9 @@ function renderChips() {
 function saveHistory() {
   const messages = [];
   chatArea.querySelectorAll(".message").forEach(el => {
+    if (el.id === "welcomeMsg") return;
     const isUser = el.classList.contains("user");
-    const text = el.querySelector(".bubble").textContent;
+    const text = el.querySelector(".bubble").innerText;
     messages.push({ text, type: isUser ? "user" : "bot" });
   });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));

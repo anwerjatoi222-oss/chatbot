@@ -2,183 +2,952 @@
   "faqs": [
     {
       "id": 1,
-      "question": "How do I apply for admission?",
-      "answer": "Applications are submitted online through the university admissions portal. Fill out the application form, upload your academic documents, pay the application fee, and submit before the deadline.",
-      "keywords": ["admission", "apply", "application", "enroll", "enrol", "apply online", "portal", "deadline"]
+      "question": "How do I apply for admission at SZABIST Hyderabad?",
+      "answer": "Admissions at SZABIST Hyderabad are announced for the Fall (August) and Spring (January) semesters. Check hyd.szabist.edu.pk for the current admission status and application form, or visit the Admission Office on the Ground Floor, State Life Building, Monday to Saturday, 9:00 AM to 5:00 PM.",
+      "keywords": [
+        "admission",
+        "apply",
+        "application",
+        "enroll",
+        "enrol",
+        "apply online",
+        "form",
+        "how to apply",
+        "intake"
+      ]
     },
     {
       "id": 2,
       "question": "What are the admission requirements?",
-      "answer": "You need a high school diploma or equivalent, official transcripts, standardized test scores (if required), a personal statement, and letters of recommendation. Specific requirements vary by program.",
-      "keywords": ["requirements", "eligibility", "diploma", "transcripts", "test scores", "personal statement", "recommendation", "criteria"]
+      "answer": "For undergraduate programs you need Intermediate or A-Levels (with IBCC equivalence where applicable). For Masters and MS programs your last degree is required and is verified by HEC. PhD applicants need a GAT Subject score of at least 60%. Admission is based on the SZABIST admission test and interview. Specific requirements vary by program.",
+      "keywords": [
+        "requirements",
+        "eligibility",
+        "intermediate",
+        "a-levels",
+        "ibcc",
+        "hec",
+        "gat",
+        "criteria",
+        "documents",
+        "qualification"
+      ]
     },
     {
       "id": 3,
-      "question": "What is the application deadline?",
-      "answer": "The regular decision deadline is January 15 for the fall semester. Early decision applications are due November 1, and spring applications are due October 1.",
-      "keywords": ["deadline", "date", "january", "november", "october", "fall", "spring", "semester", "due date"]
+      "question": "What is the admission deadline and when does the semester start?",
+      "answer": "Deadlines are announced every semester on the SZABIST Hyderabad website and notice boards. The Fall semester begins in August, the Spring semester in January, and the Summer semester in June. Provisionally admitted students must submit their educational documents by 31st December.",
+      "keywords": [
+        "deadline",
+        "last date",
+        "date",
+        "fall",
+        "spring",
+        "summer",
+        "semester start",
+        "when",
+        "due date",
+        "intake"
+      ]
     },
     {
       "id": 4,
-      "question": "How much is the tuition fee?",
-      "answer": "Tuition fees vary by program and residency status. Domestic undergraduate tuition averages $10,000 per year, while international students pay approximately $25,000 per year.",
-      "keywords": ["tuition", "fee", "cost", "price", "domestic", "international", "per year", "semester fee"]
+      "question": "Which programs are offered at SZABIST Hyderabad?",
+      "answer": "SZABIST Hyderabad offers BBA, BS Computer Science (BSCS), BS Software Engineering (BSSE), BS Artificial Intelligence (BSAI), BS Accounting and Finance, BS Social Sciences, MBA, MS Computer Science, MS Management Sciences, and PhD programs. Offered programs may change, so confirm with the Admission Office.",
+      "keywords": [
+        "programs",
+        "program",
+        "degrees",
+        "courses offered",
+        "bba",
+        "bscs",
+        "bsse",
+        "bsai",
+        "mba",
+        "ms",
+        "phd",
+        "majors",
+        "departments"
+      ]
     },
     {
       "id": 5,
-      "question": "Can I pay fees in installments?",
-      "answer": "Yes, the university offers an installment plan allowing you to split tuition into three payments per semester. Contact the Bursar's Office to enroll.",
-      "keywords": ["installment", "payment plan", "pay", "installments", "bursar", "split", "payment"]
+      "question": "Is there an admission test and how do I prepare?",
+      "answer": "Yes, applicants take the SZABIST admission test and an interview. A sample test paper is available on the SZABIST Hyderabad website to help you prepare. Test dates are announced with each admission cycle.",
+      "keywords": [
+        "admission test",
+        "entry test",
+        "test",
+        "interview",
+        "sample paper",
+        "preparation",
+        "merit",
+        "exam for admission"
+      ]
     },
     {
       "id": 6,
-      "question": "Are scholarships available?",
-      "answer": "Yes, merit-based and need-based scholarships are available. Submit the scholarship application along with your admission application by the priority deadline of December 1.",
-      "keywords": ["scholarship", "financial aid", "grant", "merit", "need-based", "funding", "aid"]
+      "question": "How much is the tuition fee?",
+      "answer": "Tuition fee depends on the program. As a guide, BBA, MBA and MS programs at SZABIST Hyderabad cost approximately Rs 135,000 per semester. Fees for BSCS, BSSE and other programs differ, so please confirm the exact amount for your program with the Admission Office or Finance Office. Student activity charges are about Rs 1,500 per semester.",
+      "keywords": [
+        "tuition",
+        "fee",
+        "fees",
+        "cost",
+        "price",
+        "per semester",
+        "rupees",
+        "rs",
+        "pkr",
+        "how much",
+        "semester fee"
+      ]
     },
     {
       "id": 7,
-      "question": "How do I access my timetable?",
-      "answer": "Log in to the student portal and go to Academics > My Timetable. You can view your weekly schedule, room locations, and instructor names there.",
-      "keywords": ["timetable", "schedule", "classes", "timetable access", "portal", "weekly schedule", "room"]
+      "question": "What other charges do I pay at the time of admission?",
+      "answer": "At admission you pay a one-time admission fee, which is non-refundable, and a security deposit, which is refunded after adjustment of any dues when you clear your degree. Examination, lab and student activity charges are also added to each semester's fee challan.",
+      "keywords": [
+        "admission fee",
+        "security deposit",
+        "charges",
+        "lab charges",
+        "exam charges",
+        "student activity",
+        "one time",
+        "extra fee",
+        "deposit"
+      ]
     },
     {
       "id": 8,
-      "question": "Can I change my timetable?",
-      "answer": "You can add or drop courses during the add/drop period, which is the first two weeks of the semester. Use the student portal or speak with your academic advisor.",
-      "keywords": ["change", "add", "drop", "swap", "timetable change", "advisor", "add/drop"]
+      "question": "How do I pay my fees?",
+      "answer": "Pay your fee challan at any Bank Al-Habib Limited branch by cash, banker's cheque or demand draft, or online through Bank Al-Habib Internet Banking or Mobile App. Other banks' mobile apps can also be used for direct credit to the account titled SZABIST Hyderabad Campus. After paying, upload a screenshot of the paid challan with your challan number, registration ID and payment date using the form given by the Finance Office.",
+      "keywords": [
+        "pay",
+        "payment",
+        "challan",
+        "bank",
+        "bank al-habib",
+        "bahl",
+        "online payment",
+        "mobile app",
+        "how to pay",
+        "voucher"
+      ]
     },
     {
       "id": 9,
-      "question": "When are the final exams?",
-      "answer": "Final exams are held during the last two weeks of each semester. The exam schedule is published four weeks before the exam period on the student portal.",
-      "keywords": ["exams", "final exams", "exam schedule", "exam dates", "semester end", "assessment"]
+      "question": "Can I pay fees in installments?",
+      "answer": "Fees are announced before each semester and must be paid by the announced deadline. For any installment arrangement or fee difficulty, contact the Finance Office on the Ground Floor, ext. 154. SZABIST also offers interest-free loans and scholarships for students who need financial support.",
+      "keywords": [
+        "installment",
+        "installments",
+        "instalment",
+        "payment plan",
+        "split",
+        "pay in parts",
+        "finance office",
+        "loan"
+      ]
     },
     {
       "id": 10,
-      "question": "What if I miss an exam?",
-      "answer": "Contact your instructor immediately. Makeup exams are granted only for documented emergencies or medical reasons, and must be approved by the department head.",
-      "keywords": ["missed exam", "makeup", "miss", "emergency", "medical", "absent", "reschedule"]
+      "question": "What happens if I pay my fee late?",
+      "answer": "A late payment surcharge applies: 5% of outstanding semester dues if paid up to the end of the 4th week, 5% plus Rs 1,000 from the 5th to the 10th week, and 5% plus Rs 2,000 from the 11th week onward. Your ZabDesk account may also be closed until the fee is paid.",
+      "keywords": [
+        "late fee",
+        "late payment",
+        "surcharge",
+        "fine",
+        "penalty",
+        "due date",
+        "zabdesk closed",
+        "overdue"
+      ]
     },
     {
       "id": 11,
-      "question": "Where is the library located?",
-      "answer": "The main library is in the Central Campus Building, Floor 3. Branch libraries are located in the Science Wing and the Arts Complex.",
-      "keywords": ["library", "location", "where", "building", "campus", "branch", "floor"]
+      "question": "What is the fee refund policy?",
+      "answer": "On admission withdrawal, 100% of tuition fee is refunded up to the 7th day after classes begin, and 50% from the 8th to the 14th day. There is no tuition refund from the 15th day. The admission fee is never refundable, while the security deposit is refunded if you have no dues.",
+      "keywords": [
+        "refund",
+        "money back",
+        "withdraw admission",
+        "cancel admission",
+        "cancellation",
+        "refund policy",
+        "return fee"
+      ]
     },
     {
       "id": 12,
-      "question": "What are the library opening hours?",
-      "answer": "The main library is open Monday–Friday 8:00 AM to 10:00 PM, Saturday 9:00 AM to 6:00 PM, and Sunday 12:00 PM to 8:00 PM. Hours may vary during holidays and exam weeks.",
-      "keywords": ["hours", "opening", "open", "time", "monday", "saturday", "sunday", "closing"]
+      "question": "Are scholarships available?",
+      "answer": "Yes. SZABIST-funded scholarships include Need-Based, Merit-Based, Talent-Based, Board of Governors/Chancellor, and General scholarships. External scholarships include Sindh Education Endowment Fund, Chief Minister SZABIST Merit and Need-Based, USAID, Pakistan Education Endowment Fund and Sindh HEC Indigenous scholarships. Contact the Academics Department or the External Relations and Financial Assistance (ERFA) Department for details.",
+      "keywords": [
+        "scholarship",
+        "scholarships",
+        "financial aid",
+        "financial assistance",
+        "grant",
+        "funding",
+        "aid",
+        "seef",
+        "usaid",
+        "free education"
+      ]
     },
     {
       "id": 13,
-      "question": "How do I borrow a book?",
-      "answer": "Use your student ID card at the circulation desk or the self-checkout kiosks. Undergraduates may borrow up to 10 books for 28 days.",
-      "keywords": ["borrow", "book", "checkout", "loan", "student ID", "circulation", "lend"]
+      "question": "How does the need-based scholarship work?",
+      "answer": "The Need-Based Scholarship covers one semester and can pay 100%, 75%, 50% or 25% of tuition. Both new and continuing students can apply if the maximum annual family income is below Rs 1,500,000. Continuing students also need a minimum CGPA of 2.5. It is not available for PhD students.",
+      "keywords": [
+        "need based",
+        "need-based",
+        "family income",
+        "poor",
+        "financial need",
+        "100 percent",
+        "75 percent",
+        "50 percent"
+      ]
     },
     {
       "id": 14,
-      "question": "Can I reserve a study room?",
-      "answer": "Yes, study rooms can be reserved online through the library website or at the library services desk. Reservations are available in 2-hour blocks.",
-      "keywords": ["study room", "reserve", "booking", "group study", "room reservation", "kiosk"]
+      "question": "How does the merit-based scholarship work?",
+      "answer": "From the second semester onward, the student with the highest semester GPA in a class who has at least 3.70 GPA and took a full course load gets a 25% fee waiver for the following semester. Transfer students, LLB, EMBA, MS and PhD students are not eligible, and the scholarship is renewable each semester based on performance.",
+      "keywords": [
+        "merit",
+        "merit based",
+        "merit-based",
+        "gpa",
+        "3.70",
+        "25 percent",
+        "top student",
+        "highest gpa",
+        "waiver"
+      ]
     },
     {
       "id": 15,
-      "question": "How do I join a student society?",
-      "answer": "Browse societies at the annual Societies Fair or on the student union website. Click 'Join' on any society's page, or attend their next meeting as a guest.",
-      "keywords": ["society", "club", "join", "student union", "societies fair", "extracurricular", "organization"]
+      "question": "Does SZABIST offer loans or study now pay later options?",
+      "answer": "Yes. SZABIST supports students through Ihsan Trust's Qarz-e-Hasna interest-free loan, The Citizens Foundation financial assistance, and the EDUFI Study Now Pay Later program. Contact the External Relations and Financial Assistance (ERFA) Department for details.",
+      "keywords": [
+        "loan",
+        "interest free",
+        "qarz-e-hasna",
+        "ihsan trust",
+        "citizens foundation",
+        "edufi",
+        "study now pay later",
+        "borrow money"
+      ]
     },
     {
       "id": 16,
-      "question": "How do I start a new society?",
-      "answer": "Gather at least 10 interested students, draft a constitution, and submit a proposal to the Student Union for approval. Approved societies receive funding and meeting space.",
-      "keywords": ["start", "create", "new society", "found", "constitution", "proposal", "student union"]
+      "question": "How do I access my timetable and register for courses?",
+      "answer": "Register for courses and view your class schedule on ZabDesk at zabdesk.szabist.edu.pk. Class schedules are also posted on notice boards. Registration is not allowed two weeks after classes begin, and students who are not registered cannot attend classes.",
+      "keywords": [
+        "timetable",
+        "schedule",
+        "class schedule",
+        "registration",
+        "register",
+        "zabdesk",
+        "portal",
+        "courses",
+        "enroll courses"
+      ]
     },
     {
       "id": 17,
-      "question": "Where can I find contact information?",
-      "answer": "Visit the Contact Us page on the university website. Key offices: Admissions (admissions@university.edu), Registrar (registrar@university.edu), and IT Helpdesk (it@university.edu).",
-      "keywords": ["contact", "email", "phone", "address", "admissions", "registrar", "helpdesk", "office"]
+      "question": "What are the class timings?",
+      "answer": "Classes run six days a week in four slots: 8:15 AM to 11:15 AM, 11:30 AM to 2:30 PM, 2:45 PM to 5:45 PM, and 6:00 PM to 9:00 PM. Each course meets once a week for 3 hours with a 15-minute break. Timings may change during Ramadan.",
+      "keywords": [
+        "class timing",
+        "class timings",
+        "slots",
+        "time",
+        "morning",
+        "evening",
+        "ramadan",
+        "lecture time",
+        "hours"
+      ]
     },
     {
       "id": 18,
-      "question": "What is the university phone number?",
-      "answer": "The main switchboard is +1 (555) 123-4567. Admissions: ext. 201, Registrar: ext. 202, Library: ext. 203, IT Helpdesk: ext. 204.",
-      "keywords": ["phone", "number", "call", "switchboard", "extension", "ext", "admissions phone"]
+      "question": "How long is a semester?",
+      "answer": "Fall and Spring semesters are 16 weeks long. Fall starts in August and Spring in January. The Summer semester starts in June and is a remedial semester where you can register for a maximum of 2 courses (6 credit hours).",
+      "keywords": [
+        "semester length",
+        "16 weeks",
+        "summer semester",
+        "remedial",
+        "duration",
+        "how long",
+        "academic calendar"
+      ]
     },
     {
       "id": 19,
-      "question": "What is the university email address?",
-      "answer": "General inquiries: info@university.edu. Admissions: admissions@university.edu. Registrar: registrar@university.edu. IT support: it@university.edu.",
-      "keywords": ["email", "mail", "address", "info@university.edu", "contact email"]
+      "question": "How can I withdraw from a course?",
+      "answer": "Submit a withdrawal request through ZabDesk's Online Course Withdrawal option before the 12th session. It must be approved by Academics, your Program Manager and the Records Department. You receive a 'W' grade, and the tuition amount is carried forward to the next semester rather than refunded.",
+      "keywords": [
+        "withdraw",
+        "withdrawal",
+        "drop course",
+        "drop",
+        "w grade",
+        "leave course",
+        "course withdrawal",
+        "semester withdrawal"
+      ]
     },
     {
       "id": 20,
-      "question": "Where is the university located?",
-      "answer": "The university is located at 123 Campus Drive, College City, State 54321, USA. The campus is a 15-minute drive from the city center.",
-      "keywords": ["location", "address", "where", "campus", "city", "directions", "map"]
+      "question": "What is the attendance policy?",
+      "answer": "In each course you are allowed a maximum of 3 absences and 1 late arrival per semester. Beyond that limit you will be dropped from the course. A minimum of 80% attendance is also required to sit the final exam. There are no leaves at SZABIST, so manage your attendance carefully.",
+      "keywords": [
+        "attendance",
+        "absent",
+        "absences",
+        "absence",
+        "late",
+        "late arrival",
+        "80 percent",
+        "leave",
+        "short attendance",
+        "dropped",
+        "drop from course",
+        "bunk"
+      ]
     },
     {
       "id": 21,
-      "question": "How do I reset my student portal password?",
-      "answer": "Click 'Forgot Password' on the student portal login page, enter your student email, and follow the reset link sent to your inbox. Alternatively, contact the IT Helpdesk.",
-      "keywords": ["password", "reset", "login", "portal", "forgot", "account", "access"]
+      "question": "When are the mid-term and final exams?",
+      "answer": "Mid-term exams are held in the 7th, 8th or 9th week of the semester and last 1.5 to 2 hours. The 16th week is a study week, and final exams are held in two weeks between the 17th and 19th week, lasting 2.5 hours. Exact dates are posted on ZabDesk and notice boards, and SMS alerts are sent to students.",
+      "keywords": [
+        "exams",
+        "exam",
+        "midterm",
+        "mid-term",
+        "final",
+        "final exam",
+        "exam schedule",
+        "exam dates",
+        "datesheet",
+        "paper"
+      ]
     },
     {
       "id": 22,
-      "question": "How do I get a student ID card?",
-      "answer": "New students receive their ID card at orientation. Replacement cards cost $15 and can be issued at the Campus Card Office in the Student Center.",
-      "keywords": ["student ID", "id card", "card", "replacement", "campus card", "orientation"]
+      "question": "How do I get my exam admit card?",
+      "answer": "Print a colour copy of your admit card from ZabDesk with a recent picture and get it verified and stamped by the Examination Department with your valid SZABIST ID card. You must bring the verified admit card to every final exam. A duplicate admit card costs Rs 1,000.",
+      "keywords": [
+        "admit card",
+        "roll number slip",
+        "duplicate admit card",
+        "exam card",
+        "verify admit card",
+        "id card exam",
+        "1000"
+      ]
     },
     {
       "id": 23,
-      "question": "Is on-campus housing available?",
-      "answer": "Yes, on-campus housing is available in several residence halls. Apply through the Housing Portal by June 1 for the fall semester. Rooms are assigned on a first-come, first-served basis.",
-      "keywords": ["housing", "dorm", "residence", "on-campus", "room", "accommodation", "apply housing"]
+      "question": "What if I miss an exam?",
+      "answer": "A retake (deferral) is possible only with documents such as a specialist medical certificate, death certificate for immediate family, Hajj documents, or approval for force majeure, and with permission of your Program Manager and HoD. Apply within two weeks after the exam week. A separate retake exam costs Rs 5,000.",
+      "keywords": [
+        "missed exam",
+        "miss exam",
+        "retake",
+        "makeup",
+        "deferral",
+        "absent exam",
+        "medical",
+        "reschedule",
+        "5000"
+      ]
     },
     {
       "id": 24,
-      "question": "What meal plans are available?",
-      "answer": "Three meal plans are offered: 19 meals/week, 14 meals/week, and 10 meals/week, all with dining dollars. Purchase or change plans through the Housing Portal.",
-      "keywords": ["meal plan", "dining", "food", "cafeteria", "meals", "dining dollars"]
+      "question": "How does grading work at SZABIST?",
+      "answer": "Grades run from A+ (90-100, 4.00 points) down to C- (55-59, 1.50 points); below 55 is an F. Undergraduate degrees need a CGPA of at least 2.00 to graduate. If you retake a course, the better grade is counted. There are no grace marks.",
+      "keywords": [
+        "grading",
+        "grades",
+        "gpa",
+        "cgpa",
+        "grade point",
+        "marks",
+        "a+",
+        "passing",
+        "grace marks",
+        "f grade"
+      ]
     },
     {
       "id": 25,
-      "question": "Is there a health center on campus?",
-      "answer": "Yes, the Student Health Center is in the Wellness Building and offers medical consultations, mental health counseling, and pharmacy services. Open Monday–Friday 9:00 AM to 5:00 PM.",
-      "keywords": ["health center", "clinic", "medical", "counseling", "wellness", "health", "pharmacy"]
+      "question": "What is academic probation?",
+      "answer": "If your CGPA falls below the required minimum you are placed on First Probation, then Second Probation, and dismissed if it is not improved. The minimum CGPA is 1.75 for undergraduate, 2.25 for Masters, 2.50 for MS and 2.75 for PhD programs. Summer semesters do not count towards probation.",
+      "keywords": [
+        "probation",
+        "dismissal",
+        "dismissed",
+        "low cgpa",
+        "1.75",
+        "warning",
+        "readmission",
+        "academic standing"
+      ]
     },
     {
       "id": 26,
-      "question": "How do I get a transcript?",
-      "answer": "Request official transcripts through the student portal under Academics > Transcripts. The first copy is free; additional copies cost $5 each.",
-      "keywords": ["transcript", "record", "official transcript", "registrar", "copy", "grade report"]
+      "question": "Can I get my paper rechecked or challenge a grade?",
+      "answer": "Yes. For final exam papers you can fill the scrutiny form for recounting or re-checking, pay the fee and submit it to the Examination Department. If your claim is correct the fee is refunded. For any grade discrepancy, submit an objection within 5 working days of the tentative results on ZabDesk.",
+      "keywords": [
+        "recheck",
+        "re-check",
+        "recount",
+        "scrutiny",
+        "objection",
+        "grade change",
+        "result",
+        "tentative result",
+        "paper check"
+      ]
     },
     {
       "id": 27,
-      "question": "Who is my academic advisor?",
-      "answer": "Your academic advisor is assigned based on your major. Find your advisor's name and contact details in the student portal under Academics > My Advisor.",
-      "keywords": ["advisor", "academic advisor", "counselor", "major", "guidance", "mentor"]
+      "question": "Where is the library and what are its timings?",
+      "answer": "The main library is on the Third Floor of the State Life Building, ext. 126. It is open Monday to Saturday from 8:00 AM to 6:00 PM, closed on Sunday, with a break on Friday from 1:00 PM to 2:30 PM. Students also get access to the HEC Digital Library inside campus.",
+      "keywords": [
+        "library",
+        "library timing",
+        "library hours",
+        "library location",
+        "third floor",
+        "open",
+        "closing",
+        "hec digital library",
+        "where is library"
+      ]
     },
     {
       "id": 28,
-      "question": "Can I transfer credits from another university?",
-      "answer": "Yes, credits from accredited institutions may be transferred. Submit your official transcript and course syllabi to the Registrar's Office for evaluation.",
-      "keywords": ["transfer", "credits", "credit transfer", "transcript", "accredited", "registrar"]
+      "question": "How do I borrow a book and what are the library fines?",
+      "answer": "Get a library membership card first. You can borrow two books at a time for three days. A late return fine is Rs 50 per day per book. If a book is damaged you pay its full price, and if lost you pay 200% of its price or replace it with a new copy. Reference books, journals and newspapers cannot be borrowed.",
+      "keywords": [
+        "borrow",
+        "book",
+        "issue book",
+        "library card",
+        "fine",
+        "late return",
+        "lost book",
+        "membership",
+        "loan period"
+      ]
     },
     {
       "id": 29,
-      "question": "Is there a career services office?",
-      "answer": "Yes, Career Services is in the Student Center and offers resume reviews, mock interviews, job listings, and career counseling. Book an appointment online.",
-      "keywords": ["career", "jobs", "resume", "employment", "career services", "internship", "counseling"]
+      "question": "Where can I do group study?",
+      "answer": "Group discussions are not allowed in the library, so use the study rooms on the Fourth Floor. Eating and drinking are not allowed in the library, classrooms, labs and study rooms.",
+      "keywords": [
+        "study room",
+        "group study",
+        "discussion",
+        "quiet",
+        "reserve",
+        "fourth floor",
+        "study area"
+      ]
     },
     {
       "id": 30,
-      "question": "How do I report a technical issue?",
-      "answer": "Contact the IT Helpdesk at it@university.edu or ext. 204, or submit a ticket at support.university.edu. Include your student ID and a description of the issue.",
-      "keywords": ["technical", "it", "helpdesk", "issue", "problem", "support", "ticket", "wifi", "internet"]
+      "question": "What computer labs and IT facilities are available?",
+      "answer": "SZABIST Hyderabad has computing, software, FYP, AI, networking and general labs, plus Wi-Fi on campus. Labs are open Monday to Saturday from 8:00 AM to 6:00 PM, with colour and laser printing at nominal cost. You may not install your own software on lab computers without written approval.",
+      "keywords": [
+        "lab",
+        "labs",
+        "computer lab",
+        "wifi",
+        "wi-fi",
+        "internet",
+        "printing",
+        "ai lab",
+        "software lab",
+        "fyp lab"
+      ]
+    },
+    {
+      "id": 31,
+      "question": "How do I join a student society?",
+      "answer": "SZABIST has many societies under the SZABIST Student Council (SSC), including the Oratory, Performing Arts, Sports, Welfare, ACM, IEEE, AWS, Google DSC and MLSA societies, and AIESEC. Visit the SSC Office on the Eighth Floor (Room 76) or the Student Advisor to find out how to join.",
+      "keywords": [
+        "society",
+        "societies",
+        "club",
+        "join",
+        "ssc",
+        "student council",
+        "acm",
+        "ieee",
+        "aiesec",
+        "extracurricular",
+        "activities",
+        "sports"
+      ]
+    },
+    {
+      "id": 32,
+      "question": "How do I start a new society or organize an event?",
+      "answer": "Student societies and associations are registered with the Office of Student Advisory. Event and project ideas need a written proposal with scope, purpose and financials, approved by your Program Manager and Head of Department. Contact the Student Advisor or the SSC Office to begin.",
+      "keywords": [
+        "start society",
+        "new society",
+        "create society",
+        "event",
+        "organize",
+        "proposal",
+        "student advisory",
+        "approval",
+        "project idea"
+      ]
+    },
+    {
+      "id": 33,
+      "question": "How can I contact SZABIST Hyderabad?",
+      "answer": "Phone: (92-22) 2782442-3 or 2730027-8. General email: info@hyd.szabist.edu.pk. Admissions email: info.admissions@hyd.szabist.edu.pk. Office hours are Monday to Friday 9:00 AM to 5:00 PM and Saturday 9:00 AM to 1:00 PM, and closed on Sunday. Individual offices may have different timings.",
+      "keywords": [
+        "contact",
+        "contact us",
+        "email",
+        "phone",
+        "call",
+        "reach",
+        "office hours",
+        "helpline",
+        "info"
+      ]
+    },
+    {
+      "id": 34,
+      "question": "What is the university phone number and extensions?",
+      "answer": "The main number is (92-22) 2782442-3 and 2730027-8. Extensions: Admissions 106, Academics 139, Records 153, Finance 154, Examination 111, Library 126, IT/Network 130, Student Career Services 148.",
+      "keywords": [
+        "phone number",
+        "number",
+        "extension",
+        "ext",
+        "call",
+        "switchboard",
+        "telephone",
+        "admissions phone",
+        "landline"
+      ]
+    },
+    {
+      "id": 35,
+      "question": "What are the email addresses of the main offices?",
+      "answer": "General: info@hyd.szabist.edu.pk. Admissions: info.admissions@hyd.szabist.edu.pk. Head of Campus: hoc@hyd.szabist.edu.pk. Campus Counsellor: campus.counsellor@hyd.szabist.edu.pk. Student Disciplinary Committee: sdc@szabist.edu.pk.",
+      "keywords": [
+        "email address",
+        "mail",
+        "emails",
+        "email id",
+        "hoc",
+        "counsellor email",
+        "admissions email",
+        "info email"
+      ]
+    },
+    {
+      "id": 36,
+      "question": "Where is SZABIST Hyderabad located?",
+      "answer": "The campus is in the State Life Building, Thandi Sarak, Hyderabad, Sindh, Pakistan, and uses the Ground, 2nd, 3rd, 4th and 8th floors. It is accessible by public transport and private vehicles, with parking available and wheelchair access.",
+      "keywords": [
+        "location",
+        "address",
+        "where",
+        "campus",
+        "state life building",
+        "thandi sarak",
+        "directions",
+        "map",
+        "parking",
+        "how to reach"
+      ]
+    },
+    {
+      "id": 37,
+      "question": "Who is the Head of Campus?",
+      "answer": "The Head of Campus at SZABIST Hyderabad is Mr. Jawad Raza Khoso, Assistant Professor. His office is on the Fourth Floor, and you can email hoc@hyd.szabist.edu.pk.",
+      "keywords": [
+        "head of campus",
+        "hoc",
+        "principal",
+        "director",
+        "campus head",
+        "jawad",
+        "who is head",
+        "dean"
+      ]
+    },
+    {
+      "id": 38,
+      "question": "How do I access ZabDesk and what if I forget my password?",
+      "answer": "ZabDesk is the student portal at zabdesk.szabist.edu.pk where you register for courses, check grades and fee status. You get a user ID and password at registration. If you forget your password, contact the Network Operation Centre (IT Help) on the Fourth Floor, ext. 130, Monday to Friday 10:00 AM to 5:00 PM.",
+      "keywords": [
+        "password",
+        "reset",
+        "login",
+        "zabdesk",
+        "portal",
+        "forgot",
+        "account",
+        "it help",
+        "access",
+        "user id"
+      ]
+    },
+    {
+      "id": 39,
+      "question": "How do I get a student ID card?",
+      "answer": "As soon as you receive your registration number, send a student ID card request through ZabDesk. Your valid SZABIST ID card is required for exams and library membership.",
+      "keywords": [
+        "student id",
+        "id card",
+        "card",
+        "identity card",
+        "registration number",
+        "new id",
+        "lost id"
+      ]
+    },
+    {
+      "id": 40,
+      "question": "Is there a cafeteria and what other facilities are on campus?",
+      "answer": "Yes. The cafeteria is on the Third Floor (Room 44). Other facilities include a photocopy shop, activity rooms, an indoor games area on the Eighth Floor, a seminar hall, study rooms and a Wellness Centre. The campus must be vacated by 10:00 PM.",
+      "keywords": [
+        "cafeteria",
+        "canteen",
+        "food",
+        "facilities",
+        "games room",
+        "photocopy",
+        "seminar hall",
+        "eat",
+        "lunch",
+        "campus facilities"
+      ]
+    },
+    {
+      "id": 41,
+      "question": "Is hostel or on-campus housing available?",
+      "answer": "The SZABIST Hyderabad student handbook does not list hostel or on-campus housing. Please contact the Admission Office on the Ground Floor, ext. 106, to confirm current accommodation options.",
+      "keywords": [
+        "hostel",
+        "housing",
+        "dorm",
+        "accommodation",
+        "residence",
+        "stay",
+        "on-campus housing",
+        "boarding"
+      ]
+    },
+    {
+      "id": 42,
+      "question": "Is counseling or a wellness centre available?",
+      "answer": "Yes. The Wellness Centre is on the Eighth Floor (Room 64) and SZABIST has an in-house campus psychologist and counselor. You can email campus.counsellor@hyd.szabist.edu.pk directly or ask your Program Manager to refer you. Academic and career counseling are also available.",
+      "keywords": [
+        "counseling",
+        "counselling",
+        "counsellor",
+        "wellness",
+        "psychologist",
+        "mental health",
+        "stress",
+        "health",
+        "support"
+      ]
+    },
+    {
+      "id": 43,
+      "question": "How do I get a transcript or other documents?",
+      "answer": "Apply through the Records Office on the Ground Floor (ext. 153, Monday to Saturday, 9:00 AM to 5:00 PM). Provisional transcripts are issued after paying the applicable fee and submitting the request form. The final transcript and degree are issued only after degree clearance and clearing all dues. Duplicate or revised transcripts take at least one month, and an urgent duplicate degree takes two working weeks.",
+      "keywords": [
+        "transcript",
+        "degree",
+        "documents",
+        "records",
+        "bonafide",
+        "migration",
+        "degree verification",
+        "certificate",
+        "provisional transcript",
+        "clearance"
+      ]
+    },
+    {
+      "id": 44,
+      "question": "Who is my academic advisor or Program Manager?",
+      "answer": "Your Program Manager (PM) is your first point of contact for academic matters like course selection, attendance and registration. Each department has its own PM, so ask me for your program, for example the PM of BSCS, BSSE, BBA, MBA, BSSS, BS Accounting and Finance, or MS/PhD. The Student Advisor is Ms. Aisha Iqbal Shaikh (aisha.iqbal@hyd.szabist.edu.pk).",
+      "keywords": [
+        "advisor",
+        "academic advisor",
+        "program manager",
+        "pm",
+        "student advisor",
+        "mentor",
+        "guidance",
+        "who is my advisor"
+      ]
+    },
+    {
+      "id": 45,
+      "question": "Can I transfer credits from another university?",
+      "answer": "Yes, credits from HEC-recognized institutions can be transferred if the course content is similar and you scored at least grade B or 80% (MS and PhD have separate rules). A maximum of 50% of degree credits can be transferred. Fill the Course Transfer form at reception in consultation with your Program Manager and submit it to the Admission Office.",
+      "keywords": [
+        "transfer",
+        "credit transfer",
+        "credits",
+        "transfer credits",
+        "course transfer",
+        "another university",
+        "equivalent",
+        "campus transfer"
+      ]
+    },
+    {
+      "id": 46,
+      "question": "Is there a career services office and internship support?",
+      "answer": "Yes. Student Career Services and Alumni Relations is on the Eighth Floor (ext. 148). It arranges career fairs, recruitment drives, mock interviews, workshops and internship placements. Undergraduate students must complete a graded 3-credit-hour internship or field experience.",
+      "keywords": [
+        "career",
+        "jobs",
+        "internship",
+        "placement",
+        "career fair",
+        "alumni",
+        "scs",
+        "mock interview",
+        "employment",
+        "resume"
+      ]
+    },
+    {
+      "id": 47,
+      "question": "What is the dress code and code of conduct?",
+      "answer": "Students must wear suitable attire. Flip-flops, slides, loungewear, shorts, three-quarter trousers and ripped jeans are not allowed, and formal wear is expected for special occasions. Smoking, drugs, alcohol, harassment and misuse of property are strictly prohibited, and disciplinary action may follow.",
+      "keywords": [
+        "dress code",
+        "uniform",
+        "clothes",
+        "attire",
+        "code of conduct",
+        "rules",
+        "discipline",
+        "behavior",
+        "smoking",
+        "allowed"
+      ]
+    },
+    {
+      "id": 48,
+      "question": "What is the plagiarism policy?",
+      "answer": "SZABIST has zero tolerance for plagiarism, and a plagiarised course gets an F grade. Turnitin is used to check theses and research reports, and the overall similarity index must be below 20%, with any single source under 5%.",
+      "keywords": [
+        "plagiarism",
+        "turnitin",
+        "similarity",
+        "copy",
+        "cheating",
+        "academic integrity",
+        "unfair means",
+        "thesis check"
+      ]
+    },
+    {
+      "id": 49,
+      "question": "What are the convocation, gold medal and honors roll criteria?",
+      "answer": "Apply for online final transcript clearance through ZabDesk to be eligible for convocation. Gold and Silver Medals go to the top two CGPAs in a graduating batch with a minimum CGPA of 3.20. Graduating students with a CGPA of 3.50 or higher are placed on the Chancellor's Honors Roll.",
+      "keywords": [
+        "convocation",
+        "gold medal",
+        "silver medal",
+        "honors roll",
+        "chancellor",
+        "graduation",
+        "degree ceremony",
+        "medal"
+      ]
+    },
+    {
+      "id": 50,
+      "question": "How long do I have to complete my degree?",
+      "answer": "The maximum time allowed from admission is 6 years for undergraduate, 4 years for Masters and MS, and 8 years for PhD programs. Required minimum CGPA at completion is 2.00 for undergraduate, 2.50 for Masters, 2.75 for MS and 3.00 for PhD.",
+      "keywords": [
+        "degree completion",
+        "maximum time",
+        "time limit",
+        "years",
+        "duration",
+        "graduate",
+        "completion",
+        "cgpa required"
+      ]
+    },
+    {
+      "id": 51,
+      "question": "Who is the Program Manager of BSCS and MSCS?",
+      "answer": "The Program Manager of BSCS and MSCS (Computer Science) is Mr. Umair Jamil Ahmad, Senior Lecturer. His office is on the Fourth Floor (Room 19). Email: umair.qureshi@hyd.szabist.edu.pk.",
+      "keywords": [
+        "pm bscs",
+        "bscs pm",
+        "mscs pm",
+        "computer science pm",
+        "program manager bscs",
+        "program manager mscs",
+        "bscs",
+        "mscs",
+        "computer science",
+        "umair"
+      ]
+    },
+    {
+      "id": 52,
+      "question": "Who is the Program Manager of BSSE and BSAI?",
+      "answer": "The Program Manager of BSSE (Software Engineering) and BSAI (Artificial Intelligence) is Mr. Anjum Khalique Bhatti, Senior Lecturer. His office is on the Fourth Floor (Room 14). Email: anjum.khalique@hyd.szabist.edu.pk.",
+      "keywords": [
+        "pm bsse",
+        "bsse pm",
+        "bsai pm",
+        "software engineering pm",
+        "ai pm",
+        "program manager bsse",
+        "program manager bsai",
+        "bsse",
+        "bsai",
+        "software engineering",
+        "artificial intelligence",
+        "anjum"
+      ]
+    },
+    {
+      "id": 53,
+      "question": "Who is the Program Manager of BBA?",
+      "answer": "BBA has two Program Managers. For BBA 1st and 2nd year it is Mr. Uzair Inayat (Second Floor, Room 54, uzair.memon@hyd.szabist.edu.pk). For BBA 3rd and 4th year it is Ms. Aiza Aziz Qureshi, Senior Lecturer (Third Floor, Room 54, aiza.qureshi@hyd.szabist.edu.pk).",
+      "keywords": [
+        "pm bba",
+        "bba pm",
+        "program manager bba",
+        "bba",
+        "business administration",
+        "bba first year",
+        "bba second year",
+        "bba third year",
+        "bba fourth year",
+        "uzair",
+        "aiza"
+      ]
+    },
+    {
+      "id": 54,
+      "question": "Who is the Program Manager of MBA?",
+      "answer": "The Program Manager of MBA is Mr. Rashid Ahmed Qureshi, Assistant Professor. His office is on the Third Floor (Room 42). Email: rashid.qureshi@hyd.szabist.edu.pk.",
+      "keywords": [
+        "pm mba",
+        "mba pm",
+        "program manager mba",
+        "mba",
+        "master of business administration",
+        "rashid"
+      ]
+    },
+    {
+      "id": 55,
+      "question": "Who is the Program Manager of BSSS (Social Sciences)?",
+      "answer": "The Program Manager of BSSS (BS Social Sciences) is Mr. Uzair Inayat, Lecturer. His office is on the Second Floor (Room 54). Email: uzair.memon@hyd.szabist.edu.pk.",
+      "keywords": [
+        "pm bsss",
+        "bsss pm",
+        "program manager bsss",
+        "bsss",
+        "social sciences",
+        "bs social sciences",
+        "uzair"
+      ]
+    },
+    {
+      "id": 56,
+      "question": "Who is the Program Manager of BS Accounting and Finance?",
+      "answer": "The Program Manager of BS Accounting and Finance (BS A&F) is Dr. Abdul Ghafoor Kazi, Associate Professor. His office is on the Fourth Floor (Room 05). Email: abdulghafoor.kazi@hyd.szabist.edu.pk.",
+      "keywords": [
+        "pm accounting",
+        "pm bs a&f",
+        "bs a&f",
+        "accounting and finance",
+        "accounting",
+        "finance program",
+        "program manager accounting",
+        "ghafoor",
+        "kazi"
+      ]
+    },
+    {
+      "id": 57,
+      "question": "Who is the Program Manager of MS, MSMS and PhD programs?",
+      "answer": "The Program Manager of PhD, MS and MSMS (MS Management Sciences) is Dr. Abdul Ghafoor Kazi, Associate Professor. His office is on the Fourth Floor (Room 05). Email: abdulghafoor.kazi@hyd.szabist.edu.pk.",
+      "keywords": [
+        "pm phd",
+        "pm ms",
+        "phd pm",
+        "ms pm",
+        "msms",
+        "program manager phd",
+        "program manager ms",
+        "phd",
+        "ms management sciences",
+        "ghafoor",
+        "kazi"
+      ]
+    },
+    {
+      "id": 58,
+      "question": "Who are all the Program Managers at SZABIST Hyderabad?",
+      "answer": "BSCS and MSCS: Mr. Umair Jamil Ahmad. BSSE and BSAI: Mr. Anjum Khalique Bhatti. BBA 1st and 2nd year and BSSS: Mr. Uzair Inayat. BBA 3rd and 4th year: Ms. Aiza Aziz Qureshi. MBA: Mr. Rashid Ahmed Qureshi. PhD, MS, MSMS and BS Accounting and Finance: Dr. Abdul Ghafoor Kazi.",
+      "keywords": [
+        "all program managers",
+        "list of pms",
+        "program managers",
+        "pms",
+        "every department pm",
+        "who are the pms",
+        "department managers"
+      ]
+    },
+    {
+     "id": 59,
+      "question": "Who is the FYP Coordinator?",
+      "answer": "The FYP (Final Year Project) Coordinator at SZABIST Hyderabad is Mr. Humair Khan Bughio, Lecturer in the Faculty of Computer Science. Email: humair.bughio@hyd.szabist.edu.pk. The FYP Lab is on the Third Floor.",
+      "keywords": [
+        "fyp",
+        "fyp coordinator",
+        "coordinator",
+        "final year project",
+        "final year",
+        "project coordinator",
+        "fyp incharge",
+        "fyp head",
+        "fyp supervisor",
+        "humair",
+        "bughio",
+        "humair bughio",
+        "who handles fyp"
+      ]
     }
   ]
 }
