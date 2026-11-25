@@ -35,9 +35,27 @@ pipeline {
             }
         }
 
-        stage('Package') {
+               stage('Deploy to GitHub Pages') {
             steps {
-                archiveArtifacts artifacts: 'index.html, style.css, script.js, faqs.json', fingerprint: true
+                withCredentials([usernamePassword(credentialsId: 'github-token',
+                                 usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
+                    bat '''
+                    if exist deploy rmdir /s /q deploy
+                    mkdir deploy
+                    copy index.html deploy\\
+                    copy style.css deploy\\
+                    copy script.js deploy\\
+                    copy faqs.json deploy\\
+                    cd deploy
+                    git init
+                    git config user.email "jenkins@local"
+                    git config user.name "Jenkins"
+                    git checkout -b gh-pages
+                    git add .
+                    git commit -m "Deploy from Jenkins build %BUILD_NUMBER%"
+                    git push --force https://%GH_USER%:%GH_TOKEN%@github.com/anwerjatoi222-oss/chatbot.git gh-pages
+                    '''
+                }
             }
         }
     }
